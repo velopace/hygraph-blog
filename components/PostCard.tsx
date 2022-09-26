@@ -1,9 +1,6 @@
 import * as React from 'react'
 
-interface Post {
-    title: string;
-    excerpt: string;
-}
+import { Post } from '../types';
 
 type Props = {
     post: Post
