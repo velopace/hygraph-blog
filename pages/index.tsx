@@ -10,7 +10,6 @@ type Props = {
 }
 
 const Home: NextPage<Props> = ({ posts }: Props) => {
-  console.log(posts)
   return (
     <div className="container mx-auto px-10 mb-8">
       <Head>
