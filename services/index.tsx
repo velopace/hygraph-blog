@@ -1,6 +1,6 @@
 import { request, gql } from "graphql-request"
 
-import { Post, PostNode } from "../types";
+import { Category, Post, PostNode } from "../types";
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT || ''
 
@@ -82,4 +82,19 @@ export const getSimilarPosts = async (categories?: string[], slug?: string): Pro
     const result = await request(graphqlAPI, query, { categories, slug });
 
     return result.posts;
+}
+
+export const getCategories = async (): Promise<Category[]> => {
+    const query = gql`
+        query GetCategories {
+            categories {
+                name
+                slug
+            }
+        }
+    `
+
+    const result = await request(graphqlAPI, query);
+
+    return result.categories;
 }

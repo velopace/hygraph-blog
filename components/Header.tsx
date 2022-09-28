@@ -1,11 +1,19 @@
 import Link from 'next/link';
-import * as React from 'react'
+import React, { useState, useEffect } from 'react'
+
+import { getCategories } from '../services'
+import { Category } from '../types'
 
 type Props = {}
 
-const categories = [{name: 'React', slug: 'react'}, {name: 'Web Development', slug: 'web-dev'}]
-
 const Header: React.FC<Props> = () => {
+    const [categories, setCategories] = useState<Category[]>([])
+
+    useEffect(() => {
+        getCategories()
+            .then((newCategories) => setCategories(newCategories))
+    }, [])
+
     return (
         <div className="container mx-auto px-10 mb-8">
             <div className="border-b w-full inline-block border-blue-400 py-8">

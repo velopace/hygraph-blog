@@ -11,6 +11,11 @@ export type Post = {
     createdAt: string;
 }
 
+export type Category = {
+    name: string;
+    slug: string;
+}
+
 type FeaturedImage = {
     url: string;
 }
