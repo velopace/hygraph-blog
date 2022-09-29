@@ -1,9 +1,9 @@
-import moment from 'moment';
-import Link from 'next/link';
+import moment from 'moment'
+import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
 import { getRecentPosts, getSimilarPosts } from '../services'
-import { Post } from '../types';
+import { Post } from '../types'
 
 type Props = {
     categories?: string[];

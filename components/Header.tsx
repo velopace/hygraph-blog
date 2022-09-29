@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from 'next/link'
 import React, { useState, useEffect } from 'react'
 
 import { getCategories } from '../services'
@@ -35,7 +35,7 @@ const Header: React.FC<Props> = () => {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default Header;
+export default Header

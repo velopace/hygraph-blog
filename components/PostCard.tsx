@@ -1,8 +1,8 @@
-import moment from 'moment';
-import Link from 'next/link';
+import moment from 'moment'
+import Link from 'next/link'
 import * as React from 'react'
 
-import { Post } from '../types';
+import { Post } from '../types'
 
 type Props = {
     post: Post
@@ -50,7 +50,7 @@ const PostCard: React.FC<Props> = ({ post }) => {
                 </Link>
             </div>
         </div>
-    );
+    )
 }
 
-export default PostCard;
+export default PostCard

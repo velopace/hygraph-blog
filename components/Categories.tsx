@@ -27,7 +27,7 @@ const Categories: React.FC<Props> = () => {
                 </Link>
             ))}
         </div>
-    );
+    )
 }
 
-export default Categories;
+export default Categories
