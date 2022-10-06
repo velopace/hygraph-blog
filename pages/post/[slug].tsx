@@ -1,11 +1,12 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
-import { useRouter } from 'next/router';
-import { ParsedUrlQuery } from 'querystring';
+import { GetStaticPaths, GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
+import { ParsedUrlQuery } from 'querystring'
 import * as React from 'react'
 
 import { Author, Categories, Comments, CommentsForm, Loader, PostDetail, PostWidget } from '../../components'
-import { getPostDetails, getPosts } from '../../services';
-import { Post, PostNode } from '../../types';
+import { AdjacentPosts } from '../../sections'
+import { getPostDetails, getPosts } from '../../services'
+import { Post, PostNode } from '../../types'
 
 type Props = {
     post: Post
@@ -28,6 +29,7 @@ const PostDetails: React.FC<Props> = ({ post }) => {
                 <div className="col-span-1 lg:col-span-8">
                     <PostDetail post={post} />
                     <Author author={post.author} />
+                    <AdjacentPosts slug={post.slug} createdAt={post.createdAt} />
                     <CommentsForm slug={post.slug} />
                     <Comments slug={post.slug} />
                 </div>
