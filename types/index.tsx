@@ -49,10 +49,3 @@ export type PostContentChildItem = {
     text: string;
     bold: boolean;
 }
-
-export type CommentFormData = {
-    name?: string;
-    email?: string;
-    comment?: string;
-    storeData: boolean;
-}

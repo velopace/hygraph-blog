@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { CommentFormData } from '../types';
+import { submitComment } from '../services'
 
 type Props = {
     slug: string;
 }
+
+type CommentFormData = {
+    name?: string;
+    email?: string;
+    comment?: string;
+    storeData: boolean;
+}
+
 
 interface Storage {
     readonly length: number;
@@ -66,6 +74,25 @@ const CommentsForm: React.FC<Props> = ({ slug }) => {
                 localStorage.removeItem('email');
             }
         }
+
+        submitComment(commentObj)
+            .then((res: any) => {
+                if (res.createComment) {
+                    if (!storeData) {
+                        formData.name = '';
+                        formData.email = '';
+                    }
+                    formData.comment = '';
+                    setFormData((prevState) => ({
+                        ...prevState,
+                        ...formData,
+                    }));
+                    setShowSuccessMessage(true);
+                    setTimeout(() => {
+                        setShowSuccessMessage(false);
+                    }, 3000);
+                }
+            })
     }
 
     return (
