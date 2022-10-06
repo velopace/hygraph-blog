@@ -1,8 +1,9 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
 import { ParsedUrlQuery } from 'querystring';
 import * as React from 'react'
 
-import { Author, Categories, Comments, CommentsForm, PostDetail, PostWidget } from '../../components'
+import { Author, Categories, Comments, CommentsForm, Loader, PostDetail, PostWidget } from '../../components'
 import { getPostDetails, getPosts } from '../../services';
 import { Post, PostNode } from '../../types';
 
@@ -15,6 +16,12 @@ export interface QParams extends ParsedUrlQuery {
 }
 
 const PostDetails: React.FC<Props> = ({ post }) => {
+    const router = useRouter();
+
+    if (router.isFallback) {
+        return <Loader />
+    }
+
     return (
         <div className="container mx-auto px-10 mb-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">

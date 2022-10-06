@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { GraphQLClient, gql } from "graphql-request"
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT || ''
-const graphCMSToken = process.env.NEXT_PUBLIC_GRAPHCMS_TOKEN
+const graphCMSToken = process.env.GRAPHCMS_TOKEN
 
 type Data = {
   name: string
