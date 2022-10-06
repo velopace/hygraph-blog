@@ -1,8 +1,10 @@
 import * as React from 'react'
 
-type Props = {}
+type Props = {
+    slug: string;
+}
 
-const CommentsForm: React.FC<Props> = () => {
+const CommentsForm: React.FC<Props> = ({ slug }) => {
     return (
         <div>
             <h1>CommentsForm</h1>

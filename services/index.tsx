@@ -42,7 +42,7 @@ export const getPosts = async (): Promise<PostNode[]> => {
 
 export const getPostDetails = async (slug?: string): Promise<Post> => {
     const query = gql`
-        query getPostDetails {
+        query getPostDetails($slug : String!) {
             post(where: { slug: $slug }) {
                 author {
                     bio
@@ -101,7 +101,7 @@ export const getSimilarPosts = async (categories?: string[], slug?: string): Pro
     const query = gql`
         query GetSimilarPosts($slug: String!, $categories: [String!]) {
             posts(
-                where: { slug_not: $slug, AND { categories_some: { slug_in: $categories } } }
+                where: { slug_not: $slug, AND: { categories_some: { slug_in: $categories } } }
                 last: 3
             ) {
                 title
