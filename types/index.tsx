@@ -49,3 +49,9 @@ export type PostContentChildItem = {
     text: string;
     bold: boolean;
 }
+
+export type Comment = {
+    name: string;
+    createdAt: string;
+    comment: string;
+}

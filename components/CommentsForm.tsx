@@ -6,9 +6,9 @@ type Props = {
 }
 
 type CommentFormData = {
-    name?: string;
-    email?: string;
-    comment?: string;
+    name: string | null;
+    email: string | null;
+    comment: string | null;
     storeData: boolean;
 }
 
@@ -28,10 +28,17 @@ const CommentsForm: React.FC<Props> = ({ slug }) => {
     const [error, setError] = useState(false)
     const [localStorage, setLocalStorage] = useState<Storage>()
     const [showSuccessMessage, setShowSuccessMessage] = useState(false)
-    const [formData, setFormData] = useState<CommentFormData>({ name: undefined, email: undefined, comment: undefined, storeData: false })
+    const [formData, setFormData] = useState<CommentFormData>({ name: null, email: null, comment: null, storeData: false })
 
     useEffect(() => {
       setLocalStorage(window.localStorage)
+      const initalFormData = {
+        name: window.localStorage.getItem('name'),
+        email: window.localStorage.getItem('email'),
+        storeData: window.localStorage.getItem('name') || window.localStorage.getItem('email') ? true : false,
+        comment: null,
+      };
+      setFormData(initalFormData)
     }, [])
     
 
@@ -99,11 +106,11 @@ const CommentsForm: React.FC<Props> = ({ slug }) => {
         <div className="bg-white shadow-lg rounded-lg p-8 pb-12 mb-8">
             <h3 className="text-xl mb-8 font-semibold border-b pb-4">Leave a Reply</h3>
             <div className="grid grid-cols-1 gap-4 mb-4">
-                <textarea value={formData.comment} onChange={onInputChange} className="p-4 outline-none w-full rounded-lg h-40 focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700" name="comment" placeholder="Comment" />
+                <textarea value={formData.comment || ''} onChange={onInputChange} className="p-4 outline-none w-full rounded-lg h-40 focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700" name="comment" placeholder="Comment" />
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
-                <input type="text" value={formData.name} onChange={onInputChange} className="py-2 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700" placeholder="Name" name="name" />
-                <input type="email" value={formData.email} onChange={onInputChange} className="py-2 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700" placeholder="Email" name="email" />
+                <input type="text" value={formData.name || ''} onChange={onInputChange} className="py-2 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700" placeholder="Name" name="name" />
+                <input type="email" value={formData.email || ''} onChange={onInputChange} className="py-2 px-4 outline-none w-full rounded-lg focus:ring-2 focus:ring-gray-200 bg-gray-100 text-gray-700" placeholder="Email" name="email" />
             </div>
             <div className="grid grid-cols-1 gap-4 mb-4">
                 <div>

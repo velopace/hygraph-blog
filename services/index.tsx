@@ -1,6 +1,6 @@
 import { request, gql } from "graphql-request"
 
-import { Category, Post, PostNode } from "../types";
+import { Category, Post, PostNode, Comment } from "../types";
 
 const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT || ''
 
@@ -145,3 +145,19 @@ export const submitComment = async (obj: any) => {
   
     return result.json();
 };
+
+export const getComments = async (slug: string): Promise<Comment[]> => {
+    const query = gql`
+        query GetComments($slug:String!) {
+            comments(where: {post: {slug:$slug}}){
+                name
+                createdAt
+                comment
+            }
+        }
+    `;
+  
+    const result = await request(graphqlAPI, query, { slug });
+  
+    return result.comments;
+}
